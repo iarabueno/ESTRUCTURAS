@@ -50,7 +50,7 @@ int main()
 
 //9) recorrer la lista entonces va a ser de tipo void
 //prin es la primera lista y segunda es la lista de los saldos negativos que todavia no está llena.
-void saldos_negativos(nodo *prin,nodo* segunda){
+void saldos_negativos(nodo *prin,nodo *segunda){
     while(prin->sig!=NULL){//condicion para recorrer
     
     if(prin->saldo<0){
