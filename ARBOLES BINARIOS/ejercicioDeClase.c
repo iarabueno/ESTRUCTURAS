@@ -421,5 +421,270 @@ void mostrar (treenode *hoja, int raiz, int *acum, int *cont)
     return;
 }
 
-// 6. Diseñar una función que, dado un árbol binario de búsqueda, calcule la sumatoria de aquellos nodos pares con un solo hijo.
+// 5. Diseñar una función que, dado un árbol binario de búsqueda, calcule la cantidad de nodos hojas divisores de la raíz.
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct arbol
+{
+    int dato;
+    struct arbol *izq;
+    struct arbol *der;
+}treenode;
+
+void crear (treenode **hoja);
+void insertar(treenode **hoja, int elem);
+// modificamos acá
+void mostrar (treenode *hoja, int raiz, int *cont);
+
+int main ()
+{
+
+
+    printf ("arboles\n");
+    treenode* arbol=NULL;
+
+    crear (&arbol);
+    printf ("**************\n");
+    printf ("mostrar arbol\n");
+    printf ("***************\n");
+    //variables nuevas
+    int raiz = arbol->dato;
+    int cont = 0;
+    mostrar(arbol, raiz, &cont);
+    printf("\ncantidad de nodos hoja divisores de la raíz (%d): %d\n", raiz, cont);
+
+
+
+    return 0;
+}
+void crear (treenode **hoja)
+{
+    int numero;
+
+    printf ("ingrese numero\n");
+    scanf ("%d",&numero);
+    while (numero!=-1)
+    {
+
+        insertar(&(*hoja),numero);
+        printf ("ingrese numero\n");
+        scanf ("%d",&numero);
+    }
+}
+
+void insertar (treenode **hoja,int elem)
+{
+    int numero=elem;
+    if (elem==-1)
+        return;
+    if (*hoja==NULL)
+    {
+        //creo la hoja vacia
+        (*hoja)=(treenode*)malloc(sizeof(treenode));
+        (*hoja)->dato=elem;
+        (*hoja)->der=NULL;
+        (*hoja)->izq=NULL;
+    }else{
+
+
+
+
+    if (numero>(*hoja)->dato)
+    {
+
+        insertar (&(*hoja)->der,elem);
+
+    }
+    else
+    {
+
+        insertar (&(*hoja)->izq,elem);
+    }
+    }
+return;
+}
+
+
+// paso 1. modificamos acá agregando el parametro suma
+void mostrar (treenode *hoja, int raiz, int *cont)
+{
+    if (hoja!=NULL)
+    {
+
+        mostrar(hoja->izq, raiz, cont);
+        printf("%d ", hoja->dato);
+
+        // Si es hoja y divisor de la raíz
+        if (hoja->izq == NULL && hoja->der == NULL) {
+            if (hoja->dato != 0 && raiz % hoja->dato == 0) {
+                (*cont)++;
+            }
+        }
+
+        mostrar(hoja->der, raiz, cont);
+
+    }
+    return;
+}
+
+//6. Diseñar una función que, dado un árbol binario de búsqueda, calcule la sumatoria de aquellos nodos pares con un solo hijo
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct arbol
+{
+    int dato;
+    struct arbol *izq;
+    struct arbol *der;
+} treenode;
+
+void crear (treenode **hoja);
+void insertar(treenode **hoja, int elem);
+void mostrar (treenode *hoja, int *suma);
+
+int main ()
+{
+    printf ("arboles\n");
+    treenode* arbol = NULL;
+
+    crear(&arbol);
+    printf ("**************\n");
+    printf ("mostrar arbol\n");
+    printf ("***************\n");
+
+    int suma = 0;
+    mostrar(arbol, &suma);
+    printf("\nSumatoria de nodos pares con un solo hijo: %d\n", suma);
+
+    return 0;
+}
+
+void crear (treenode **hoja)
+{
+    int numero;
+    printf ("ingrese numero\n");
+    scanf ("%d", &numero);
+    while (numero != -1)
+    {
+        insertar(&(*hoja), numero);
+        printf ("ingrese numero\n");
+        scanf ("%d", &numero);
+    }
+}
+
+void insertar (treenode **hoja, int elem)
+{
+    if (elem == -1)
+        return;
+    if (*hoja == NULL)
+    {
+        (*hoja) = (treenode*)malloc(sizeof(treenode));
+        (*hoja)->dato = elem;
+        (*hoja)->der = NULL;
+        (*hoja)->izq = NULL;
+    }
+    else
+    {
+        if (elem > (*hoja)->dato)
+            insertar(&(*hoja)->der, elem);
+        else
+            insertar(&(*hoja)->izq, elem);
+    }
+    return;
+}
+
+void mostrar (treenode *hoja, int *suma)
+{
+    if (hoja != NULL)
+    {
+        mostrar(hoja->izq, suma);
+        printf("%d ", hoja->dato);
+        // Suma nodos pares con un solo hijo
+        if ((hoja->dato % 2 == 0) && ((hoja->der==NULL && hoja->izq!=NULL) || (hoja->der!=NULL && hoja->izq==NULL))) {
+            *suma += hoja->dato;
+        }
+        mostrar(hoja->der, suma);
+    }
+    return;
+}
 //7. Diseñar una función que, dado un árbol binario de búsqueda, calcule la cantidad de nodos impares con dos hijos.
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct arbol
+{
+    int dato;
+    struct arbol *izq;
+    struct arbol *der;
+} treenode;
+
+void crear (treenode **hoja);
+void insertar(treenode **hoja, int elem);
+void mostrar (treenode *hoja, int *contDos);
+
+int main ()
+{
+    printf ("arboles\n");
+    treenode* arbol = NULL;
+
+    crear(&arbol);
+    printf ("**************\n");
+    printf ("mostrar arbol\n");
+    printf ("***************\n");
+
+    int contDos = 0;
+    mostrar(arbol, &contDos);
+    printf("\nCantidad de nodos impares con dos hijos: %d\n", contDos);
+
+    return 0;
+}
+
+void crear (treenode **hoja)
+{
+    int numero;
+    printf ("ingrese numero\n");
+    scanf ("%d", &numero);
+    while (numero != -1)
+    {
+        insertar(&(*hoja), numero);
+        printf ("ingrese numero\n");
+        scanf ("%d", &numero);
+    }
+}
+
+void insertar (treenode **hoja, int elem)
+{
+    if (elem == -1)
+        return;
+    if (*hoja == NULL)
+    {
+        (*hoja) = (treenode*)malloc(sizeof(treenode));
+        (*hoja)->dato = elem;
+        (*hoja)->der = NULL;
+        (*hoja)->izq = NULL;
+    }
+    else
+    {
+        if (elem > (*hoja)->dato)
+            insertar(&(*hoja)->der, elem);
+        else
+            insertar(&(*hoja)->izq, elem);
+    }
+    return;
+}
+
+void mostrar (treenode *hoja, int *contDos)
+{
+    if (hoja != NULL)
+    {
+        mostrar(hoja->izq, contDos);
+        printf("%d ", hoja->dato);
+        // condición: impar y dos hijos
+        if ((hoja->dato % 2 != 0) && (hoja->izq != NULL && hoja->der != NULL)) {
+            (*contDos)++;
+        }
+        mostrar(hoja->der, contDos);
+    }
+    return;
+}
