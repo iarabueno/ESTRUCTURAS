@@ -129,5 +129,5 @@ void mostrar (treenode *hoja, int raiz, int *mayor, int *cont)
         mostrar(hoja->der, raiz, mayor, cont);
 
     }
-    return;
+    return 0;
 }
