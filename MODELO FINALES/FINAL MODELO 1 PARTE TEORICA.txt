@@ -1,0 +1,42 @@
+VERDADERO Y FALSO
+1. los vectores son estructuras dinamicas: FALSO
+2. para alojar memoria dinamicamente utilizamos la funcion malloc: VERDADERO
+3. los punteros nos permiten acceden a memoria unicamente estatica: FALSO
+4. al trabajar con archivos la funcion fopen no permite especificar diversos modelos de acceso de archivo. el acceso es siempre unico: FALSO
+5. propiedades de los arboles. la raiz nunca puede ser nodo hoja: FALSO
+6. justique las preguntas del 1 al 5:
+
+para 1: Los vectores (arreglos) en C tienen tamaño fijo y no pueden cambiar durante la ejecución.
+para 2: malloc reserva memoria en tiempo de ejecución en el heap.
+para 3: Los punteros acceden tanto a memoria estática como dinámica.
+para 4: fopen permite modos de acceso como "r", "w", "a", "rb", etc.
+para 5: Si el árbol solo tiene un nodo, la raíz es también una hoja.
+
+
+A DESARROLLAR:
+7. ¿Cuales son los componentes necesarios para armar una funcion recursiva? Explique
+Caso general: 
+Algoritmo aplicado en términos genéricos (n). Cada una de las llamadas recursivas pasará por aquí. Nos acerca al caso base. No puede ser infinito
+Caso base: 
+Condición de corte para el algoritmo recursivo
+
+
+8. Proponer una situación en donde se utilizan pilas y donde se utilizan colas.
+Pilas:
+Se usan en la gestión de llamadas a funciones (call stack) y para deshacer acciones en editores (undo).
+
+Colas:
+Se usan en la impresión de documentos (print queue) y en la atención de clientes (turnos en una fila).
+
+
+CHOICE:
+9. Para obtener la dirección de memoria donde se encuentra alojada una variable:
+➔ a) &nombre_de _la variable
+B) *nombre_de la variable
+C) *&nombre_de_la_variable 
+
+10. Una multilista se define como:
+➔ A) Una lista de listas.
+B) Una lista principal con dos punteros, uno apunta al nodo anterior.
+C) Una lista principal con dos punteros, uno apunta a otra lista de la misma estructura.
+D) Ninguna de las anteriores.
